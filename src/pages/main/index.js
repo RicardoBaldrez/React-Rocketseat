@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import api from "../../services/api";
 
+import './styles.css';
+
 export default class Main extends Component {
     // Criando o armazenamento em estado
     state = {
@@ -24,13 +26,20 @@ export default class Main extends Component {
     };
 
     render() {
+        // Buscando a variável products do nosso state
+        const { products } = this.state;
+
         return (
             <div className="product-list">
-                {this.state.products.map(product => (
+                {products.map((product) => (
                     // Sempre que faz um map, o react pede para que no primeiro elemento seja adicionado uma key com o valor único para cada item da iteração
-                    <h2 key={product._id}>{ product.title }</h2>
-                ))};
+                    <article key={product._id}>
+                        <strong>{product.title}</strong>
+                        <p>{product.description}</p>
+                        <a href="">Acessar</a>
+                    </article>
+                ))}
             </div>
-        )
+        );
     }
 }
